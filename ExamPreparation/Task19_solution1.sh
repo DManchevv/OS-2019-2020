@@ -1,5 +1,6 @@
 #!/bin/bash
 #First Solution
+#Reshenie za maloumni koito ne znaqt komandite (az)
 if [[ $# -eq 0 ]]; then
 echo "No valid arguments!"
 exit 1
