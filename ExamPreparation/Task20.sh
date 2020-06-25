@@ -12,8 +12,8 @@ exit 2
 fi
 
 if [[ 'whoami' != 'root' ]]; then
-#echo "You have to be root to execute the script!"
-#exit 3
+echo "You have to be root to execute the script!"
+exit 3
 fi
 
 src=$1
