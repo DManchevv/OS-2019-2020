@@ -29,7 +29,7 @@ while read line; do
 
 done < "${FriendsLIST}"
 
-cat ${NumberROWS} | sort -r -k2n | head -n 10
+cat ${NumberROWS} | sort -r -k2n | cut -d ':' -f1 | head -n 10
 
 rm -- "${NumberROWS}"
 rm -- "${FriendsLIST}"
