@@ -1,3 +1,6 @@
+// Create your own foo.txt file in the same directory.
+// NOTE: It is not necessary to create bar.txt, the flag O_CREAT will create it automatically for you if bar.txt is not found in the file tree.
+
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
