@@ -1,3 +1,4 @@
+// Create cat command with random number of arguments.
 
 #include <fcntl.h>
 #include <stdlib.h>
