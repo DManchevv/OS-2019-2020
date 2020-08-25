@@ -21,7 +21,7 @@ int main (int argc, char* argv[]){
         err(3, "%s", argv[1]);
     }
 
-    int fd2 = open(argv[2], O_CREAT | O_RDWR | O_TRUNC);
+    int fd2 = open(argv[2], O_CREAT | O_RDWR | O_TRUNC, S_IRUSR, S_IWUSR);
     if (fd2 == -1){
         close(fd1);
         close(fd2);
