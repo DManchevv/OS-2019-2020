@@ -1,7 +1,7 @@
 // Create a program which takes 2 arguments. First one is "--max" "--min" or "--print" and the second one is binary file. (see man strcmp).
 // The file contains only uint16_t numbers (see man stdint.h). If the first argument is "--max" the program prints the highest number,
 // if the first argument is "--min" it prints the lowest number and if it is "--print" it prints all numbers separated by new line.
-// NOTE: Download the file dump.c and use it as a second argument
+// NOTE: Download the file dump and use it as a second argument
 
 #include <stdlib.h>
 #include <fcntl.h>
