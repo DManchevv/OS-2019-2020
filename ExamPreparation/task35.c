@@ -1,3 +1,5 @@
+// NOTE: Same task as task6.c in c_training directory.
+
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
