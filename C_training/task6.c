@@ -1,3 +1,6 @@
+// Create a program which takes only 1 argument (a binary file) and sorts it.
+// NOTE: Use the file dump in this directory.
+
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
