@@ -24,9 +24,8 @@ int main(int argc, char* argv[]){
     }
     
     while(read(fd1, &c, 1)) {
-        printf("%s", &c);
+        write(1, &c, 1);
     }
-    printf("\n");
     close(fd1);
     exit(0);
 }
