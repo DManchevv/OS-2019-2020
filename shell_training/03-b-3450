@@ -1,0 +1,1 @@
+cat /etc/services | awk -F ' ' '{print $1,$2}' | grep " 69/" | cut -d ' ' -f1
