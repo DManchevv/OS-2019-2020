@@ -1,9 +1,3 @@
-
-// Check first argument (if -s or -d or missing)
-// if -d remove each symbol
-// if -s reduce each symbol to 1 in a row
-// if missing swap each symbol from set1 with symbol from set2
-
 #include <err.h>
 #include <stdlib.h>
 #include <unistd.h>
