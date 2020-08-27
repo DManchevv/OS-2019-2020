@@ -1,0 +1,1 @@
+find ~ -type f -newer 02-a-5401.txt | xargs -I{} rm -i {}
