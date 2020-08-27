@@ -1,2 +1,2 @@
-cat /etc/passwd | wc -c  // Symbols
+cat /etc/passwd | wc -m  // Symbols
 cat /etc/passwd | wc -l  // Rows
