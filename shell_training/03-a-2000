@@ -1,0 +1,11 @@
+cat /etc/passwd | head -n 12    // First 12 rows
+
+cat /etc/passwd | head -c 26    // First 26 symbols
+
+cat /etc/passwd | head -n -4    // All but the last 4 rows
+
+cat /etc/passwd | tail -n 17    // Last 17 rows
+
+cat /etc/passwd | head -n 151 | tail -n 1   // Prints the 151th row 
+
+cat /etc/passwd | head -n 13 | tail -n 1 | rev | cut -c 1-4 | rev   // Prints the last 4 symbols from the 13th row.
