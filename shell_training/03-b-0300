@@ -1,0 +1,1 @@
+cat /etc/passwd | grep "Tuk si pishesh fakultetniq nomer ili dvete imena" | cut -c 2-6
