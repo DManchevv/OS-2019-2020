@@ -1,0 +1,2 @@
+cd /bin
+ls -l | cut -c 1-10 | grep "x" | wc -l
