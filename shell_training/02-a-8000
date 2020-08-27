@@ -1,0 +1,3 @@
+cd ~
+mkdir bin2
+find /bin -type f -perm -o=rwx | xargs -I{} cp {} ~/bin2
