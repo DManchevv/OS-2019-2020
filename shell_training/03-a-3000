@@ -1,0 +1,2 @@
+ls -l > 03-a-3000.txt 
+cat 03-a-3000.txt | sort -n -t ' ' -k 2
