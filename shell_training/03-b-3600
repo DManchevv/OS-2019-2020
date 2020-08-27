@@ -1,0 +1,3 @@
+find / -maxdepth 3 -type d -ls | tr -s [:blank:] | cut -c 2- | grep " d[^r]" | wc -l   // Count of dirs without access
+
+find / -maxdepth 3 -type d -ls | tr -s [:blank:] | cut -c 2- | grep " d[r]" | wc -l    // Dirs with access
