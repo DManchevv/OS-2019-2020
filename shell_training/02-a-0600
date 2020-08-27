@@ -1,0 +1,6 @@
+// NOTE: You won't have these files and these directories in your linux machine. Simply create them (in your home dir for example) and copy them.
+// This file shows how to copy if these directories existed.
+
+cd ~
+mkdir dir1
+cp /tmp/os2018/practice/01/{f1,f2,f3} ~/dir1
