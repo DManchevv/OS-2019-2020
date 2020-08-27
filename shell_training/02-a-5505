@@ -1,0 +1,5 @@
+// NOTE: This command checks only current directory, if you want to check in the whole root system, type find / instead of find .
+
+find . -type f -newer 02-a-5401.txt  //Current directory
+
+find / -type f -newer 02-a-5401.txt // Whole root system
