@@ -1,0 +1,3 @@
+ls | grep ".ogg$" | cut -d '.' -f1 | egrep "(Beatles -|Pink -)" | cut -d '-' -f2 | cut -c2-    // Print Beatles' and Pink's songs
+
+ls | grep ".ogg$" | cut -d '.' -f1 | egrep "(Beatles -|Pink -)" | cut -d '-' -f2 | cut -c2- | wc -l   // Count Beatles' and Pink's songs
