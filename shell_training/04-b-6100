@@ -1,0 +1,1 @@
+ps -eo user,cmd | grep "vim" | cut -d ' ' -f1 | uniq
