@@ -1,0 +1,1 @@
+cat /etc/passwd | cut -d ':' -f5 | sed -r "s/^([a-zA-Z]*\s[a-zA-Z ]*).*$/\1/" | grep -v , | tr [[:lower:]] [[:upper]]
