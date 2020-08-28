@@ -1,0 +1,1 @@
+ps -eo group,sz | grep root | awk '{sum += $2} END {if (NR == 0) exit 1; else print sum / NR}'
