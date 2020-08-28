@@ -1,1 +1,1 @@
-cat /etc/passwd | grep -v "ov" | wc -l
+cat /etc/passwd | grep -v "ov"
