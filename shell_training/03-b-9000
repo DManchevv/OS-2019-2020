@@ -1,0 +1,3 @@
+// This command will be very slow so wait until the command finishes.
+
+find / -type f -mmin -15 2> /dev/null | xargs -I{} stat {} --format "%n : %y" 2> /dev/null | cut -d '.' -f1 | sort -n -t: -k 2 | tail -n 1 | cut -d ':' -f1 > eternity 
