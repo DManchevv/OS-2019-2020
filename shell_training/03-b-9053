@@ -1,0 +1,4 @@
+cat population.csv | grep ",2016," | rev | cut -d ',' -f1,2,3 | rev | sort -t ',' -k 3 -n | tail -n 1   // Biggest
+
+cat population.csv | grep ",2016," | rev | cut -d ',' -f1,2,3 | rev | sort -t ',' -k 3 -n | head -n 1   // Lowest
+
