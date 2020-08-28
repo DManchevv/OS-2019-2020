@@ -1,0 +1,13 @@
+mkdir ~/s60000/dir1
+cd ~/s60000/dir1
+touch file1 file2 file3
+
+// Edit the files with vi. If you don't know how to use vi you can always google it.
+
+wc file1
+wc file2      // Rows, words and symbols for each file
+wc file3
+
+wc file1 file2 file3 | head -n 3 | cut -c2- | tr -s [:blank:] | cut -d ' ' -f 1,3,4    // Rows and symbols for all files
+
+wc file1 file2 file3 | tail -n 1 | cut -d ' ' -f1     // Total rows of the three files.
