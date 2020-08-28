@@ -9,3 +9,8 @@ s855287:x:1195:504:Vaska Kichukova,SI,2,5:/home/SI/s855287:/bin/bash
 
 
 cat task10.txt | rev | cut -d ':' -f2- | rev | grep "SI" | sed 's/s//' | sort -n | cut -d ':' -f5- | tr -d ',' | sed 's/\(^.*va\|^.*v\)\(.*:\)\(.*$\)/\1:\3/'
+
+or
+
+
+cat task10.txt | rev | cut -d ':' -f2- | rev | grep "SI" | cut -c2- | sort -n | cut -d ':' -f5- | tr ':' ' ' | tr ',' ' ' | awk '{print $1,$2,":" $NF}' | sed 's/ //2'
