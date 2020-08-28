@@ -1,1 +1,3 @@
-a
+find / -name "*.c" 2> /dev/null | wc -l     // Count of C files in / 
+
+find / -name "*.c" 2> /dev/null | xargs -I{} cat {} | wc -l     // Count of total rows of c files
