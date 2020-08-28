@@ -1,0 +1,3 @@
+cat population.csv | grep ",2008," | awk -F ',' '{print $4}' | awk '{sum += $1} END {print sum}'   // 2008
+
+cat population.csv | grep ",2016," | awk -F ',' '{print $4}' | awk '{sum += $1} END {print sum}'   // 2016
