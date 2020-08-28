@@ -1,49 +1,53 @@
 #!/bin/bash
-# NOT MY SOLUTION
-# github.com/andy489
 
-#!/bin/bash
+if [[ $# -ne 3 ]]; then
+    echo "Please enter 3 arguments!"
+    exit 1
+fi
 
-[ $# -eq 3 ] || { 
-echo "Invalid number of arguments. Usage: $0 <filename> <str1> <str2>" 
-exit 1
-}
+file=$1
+str1=$2
+str2=$3
+isFound=0
 
-FILE_PATH="${1}"
+if [[ ! -f ${file} ]]; then
+    echo "Please enter valid file!"
+    exit 2
+fi
 
-[ -f "${FILE_PATH}" ] || { echo "File ${FILE_PATH}" does not exist; exit 2; }
+if [[ $(cat ${file} | egrep -c "${str1}=") -eq 0 ]]; then
+    echo "The first string is not in the file!"
+    exit 3
+fi
 
-[ -r "${FILE_PATH}" ] || { echo "File ${FILE_PATH}" is not readable; exit 3; }
+if [[ $(cat ${file} | egrep -c "${str2}=") -eq 0 ]]; then
+    echo "The second string is not in the file!"
+    exit 4
+fi
 
-[ -w "${FILE_PATH}" ] || { echo "File ${FILE_PATH}" is not writable; exit 4; }
+newFile=$(mktemp)
+cat ${file} | grep -v "${str2}=" > ${newFile}
 
-KEY_1="${2}"
-KEY_2="${3}"
+if [[ $(cat ${file} | egrep -c "${str2}") -eq 0 ]]; then
+    echo "${str2}=" >> ${newFile}
+fi
 
-[ -n "${KEY_1}" -a -n "${KEY_2}" ] || { echo "There is a key with zero length"; exit 5; }
+if [[ $(cat ${file} | egrep -c "${str2}") -ne 0 ]]; then
+    echo -n "${str2}=" >> ${newFile}
+    for i in $(cat ${file} | grep "${str2}=" | cut -d '=' -f2); do
+        isFound=0
+        for j in $(cat ${file} | grep "${str1}=" | cut -d '=' -f2); do
+ 	    if [[ $i == $j ]]; then
+                isFound=1
+            fi
+        done
+        if [[ ${isFound} -eq 0 ]]; then
+            echo -n "${i} " >> ${newFile}
+        fi
+    done
+    echo " " >> ${newFile}
+    cat ${newFile} > ${file}
+fi
 
-VAL_1=$(fgrep "${KEY_1}=" "${FILE_PATH}" | sed "s/${KEY_1}=//")
-VAL_2=$(fgrep "${KEY_2}=" "${FILE_PATH}" | sed "s/${KEY_2}=//")
 
-# alternative with awk:
-# VAL_1="$(fgrep "${KEY_1}=" "${FILE_PATH}" | awk -F'=' '{print $2}')"
-# VAL_2="$(fgrep "${KEY_2}=" "${FILE_PATH}" | awk -F'=' '{print $2}')"
-
-# echo "${VAL_1}"
-# echo "${VAL_2}"
-
-[ -n "${VAL_2}" ] || exit 0
-
-NEW_VAL=""
-
-for WORD in ${VAL_2}; do
-	if fgrep -qv "${WORD}" <(echo "${VAL_1}"); then
-		NEW_VAL+="${WORD} "
-	fi
-done
-
-NEV_VAL="$(echo "${NEW_VAL%?}" )" # removing the last space symbol
-
-sed -i -E "s/${KEY_2}=${VAL_2}/${KEY_2}=${NEW_VAL}/" "${FILE_PATH}"
-
-exit $?
+rm -- ${newFile}
