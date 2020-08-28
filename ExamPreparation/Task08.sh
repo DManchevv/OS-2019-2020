@@ -1,3 +1,4 @@
 #!/bin/bash
-  
-ls -l | awk '{print $2,$NF}' | sort -r | grep "[a-zA-Z]" | head -n 5
+ 
+ls -l | tr -s [:blank:] | awk '{print $2, $NF}' | sort -n -r | head -n 6 | tail -n 5
+
