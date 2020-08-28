@@ -1,1 +1,1 @@
-ps aux | grep "root" | tr -s [:blank:] | cut -d ' ' -f4 | awk '{sum += $1} END {print sum}'
+ps -eo group,sz | grep root | awk '{sum += $2} END {print sum}'
