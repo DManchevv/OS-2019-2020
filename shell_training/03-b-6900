@@ -1,0 +1,1 @@
+find /type f | xargs ls -ltr 2> /dev/null | sort -M -k 8,10 | head -n 10
