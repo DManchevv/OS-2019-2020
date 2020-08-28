@@ -1,0 +1,1 @@
+ls | grep ".ogg$" | cut -d '-' -f1 | uniq | tr -d ' ' | xargs -I{} mkdir ~/{}
