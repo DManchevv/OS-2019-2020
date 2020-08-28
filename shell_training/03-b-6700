@@ -1,0 +1,1 @@
+ls -l /tmp | tr -s [:blank:] | cut -d ' ' -f,9 | grep "^.[r]"
