@@ -1,0 +1,1 @@
+cat file{1,2,3} | uniq | sort | uniq -c | sort -r -n -k 1
