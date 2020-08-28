@@ -12,3 +12,4 @@ mv $i /a
 elif [[ $(cat $i | wc -l) > $first && $(cat $i | wc -l) < $second ]]; then
 mv $i /b
 else mv $i /c
+done
