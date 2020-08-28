@@ -1,0 +1,1 @@
+find / -type f -name "*.sh" 2> /dev/null | xargs -I{} head -n 1 {} | grep "^#!" | uniq -c | sort -n -r | head -n 1
