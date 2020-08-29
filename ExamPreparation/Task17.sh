@@ -30,3 +30,18 @@ if [[ $count -gt $user_count ]]; then
 echo $name
 fi
 done <<< "$processes"
+
+process_count=$(ps -e | wc -l)
+echo $process_count
+seconds_sum=$(ps -e -o time | awk -F ':' '{sum+= $3} END {print sum}')
+minutes_sum=$(ps -e -o time | awk -F ':' '{sum += $2} END {print sum}')
+minutes_real_sum=$((minutes_sum+seconds_sum/60))
+hours_sum=$(ps -e -o time | awk -F ':' '{sum += $1} END {print sum}')
+hours_real_sum=$((hours_sum+minutes_real_sum/60))
+seconds_sum=$((seconds_sum+minutes_sum*60+hours_sum*3600))
+seconds_sum=$((seconds_sum/process_count))
+minutes_real_sum=$((minutes_sum+seconds_sum/60))
+hours_real_sum=$((hours_sum+minutes_real_sum/60))
+minutes_real_sum=$((minutes_real_sum%60))
+seconds_sum=$((seconds_sum%60))
+echo $hours_real_sum:$minutes_real_sum:$seconds_sum
