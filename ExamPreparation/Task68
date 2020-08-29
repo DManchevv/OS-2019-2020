@@ -1,0 +1,10 @@
+s1.init(0)
+s2.init(0)
+s3.init(0)
+
+process P       process Q          process R
+  p_1             q_1                 r_1
+s3.wait()       s1.wait()          s3.signal()
+  p_2             q_2               s2.wait()
+s1.signal()     s2.signal()           r_2
+  p_3             q_3                 r_3
