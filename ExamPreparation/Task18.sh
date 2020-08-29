@@ -1,32 +1,44 @@
 #!/bin/bash
-# 18.sh
-# NOT MY SOLUTION
-# github.com/andy489
-user_home=$(mktemp)
+  
+userHome=$(mktemp)
+latestForAllUsers=$(mktemp)
 
-cat /etc/passwd | cut -d ':' -f 1,6 | tr ':' ' ' > "${user_home}"
-#cat $user_home
-function find_most_recently_modified_regular_file {
-    find "${1}" -type f ! -name ".*" -printf "%T@ %f\n" 2>/dev/null | sort -n -t' ' -k1 | tail -1
-}
+cat /etc/passwd | cut -d ':' -f 1,6 | tr ':' ' ' > "${userHome}"
 
-most_recent_for_all_users=$(mktemp)
 
 while read user home; do
 
-    [ -d "${home}" ] || continue
-    [ -r "${home}" ] || continue
+    if [[ ! -d "${home}" ]]; then
+        echo "${home} is not valid directory!"
+        continue
+    fi
 
-    cur_file="$(find_most_recently_modified_regular_file "${home}")"
+    if [[ ! -r "${home}" ]]; then
+        echo "${home} is not readable!"
+        continue
+    fi
 
-    [ -n "${cur_file}" ] || continue
+    latestMonth=$(ls -l ~ | tr -s [:blank:] | cut -d ' ' -f6- | sort -r | cut -d ' ' -f1 | tail -n 2)
 
-    echo "${user} ${cur_file}" >> "${most_recent_for_all_users}"
+    latestDate=$(ls -l ~ | grep "${latestMonth}" | tr -s [:blank:] | cut -d ' ' -f7- | sort -n | cut -d ' ' -f1 | tail -n 1)
 
-done < "${user_home}"
+    latestFile=$(ls -l ~ | grep "${latestMonth}" | grep "${latestDate}" | tr -s [:blank:] | cut -d ' ' -f8- | sort | tail -n 1 | cut -d ' ' -f2)
 
-cat "${most_recent_for_all_users}" | sort -n -t' ' -k2 | tail -1 | cut -d' ' -f1,3-
+    completeFile=$(ls -l ${home} | grep "${latestMonth}" | grep "${latestDate}" | grep "${latestFile}" | tr -s [:blank:] | cut -d ' ' -f6-)
 
-rm -- "${most_recent_for_all_users}"
-rm -- "${user_home}"
-~                                
+    echo "${user} ${completeFile}" >> "${latestForAllUsers}"
+
+done < "${userHome}"
+
+latestMonth=$(cat ${latestForAllUsers} | cut -d ' ' -f2 | sort -r | tail -n 2)
+
+latestDate=$(cat ${latestForAllUsers} | grep "${latestMonth}" | cut -d ' ' -f3 | sort -n | tail -n 1)
+
+latestFile=$(cat ${latestForAllUsers} | grep "${latestMonth}" | grep "${latestDate}" | cut -d ' ' -f4- | sort | tail -n 1 | cut -d ' ' -f2)
+
+taskAnswer=$(cat ${latestForAllUsers} | grep "${latestMonth}" | grep "${latestDate}" | grep "${latestFile}" | cut -d ' ' -f1)
+
+echo "${taskAnswer}"
+
+rm -- ${userHome}
+rm -- ${latestForAllUsers}
