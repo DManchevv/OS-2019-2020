@@ -1,0 +1,27 @@
+#include <stdlib.h>
+#include <unistd.h>
+#include <err.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int main (int argc, char** argv){
+	
+	if (argc != 2){
+		errx(1,"Wrong arguments! Usage: %s <file>", argv[0]);
+	}
+	if ((mkfifo("mypipe", 0777)) == -1){
+		err(2, "Could not create named pipe!");
+	}
+	int fd = open("mypipe", O_WRONLY);
+	if (fd == -1){
+		err(3,"Could not open named pipe!");
+	}
+	if ((dup2(fd, 1)) == -1){
+		err(4, "Cannot create duplicate!");
+	}
+	if ((execlp("cat","cat", argv[1], (char *) NULL)) == -1){
+		err(5, "Exec error with command cat!");
+	}
+}
