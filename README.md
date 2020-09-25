@@ -1,3 +1,3 @@
 # OS2020
-OS pri Skeleta
-[embed] (https://github.com/DManchevv/OS2020/blob/master/exam-problems.pdf) [/embed]
+FMI OS Course 2019/2020
+https://github.com/DManchevv/OS2020/blob/master/exam-problems.pdf
