@@ -11,7 +11,7 @@ To view all tasks click here: <a href="https://github.com/DManchevv/OS2020/blob/
 
 2) Working with C in Linux. <BR>
 2.1) Kernel functions - write,read,open,close. Working with file descriptors. <BR>
-2.2) Stat, printf, errors, errno, ssize_t, 
+2.2) Stat, printf, errors, errno, ssize_t. <BR>
 2.3) Working with bytes, mainly uint8_t, uint16_t and uint32_t. <BR>
 2.4) Fork and exec. How does fork work, child and parent process. <BR>
 2.5) Pipes and FIFO. How to create pipe and how to send information through the pipe. What's the difference between pipe and FIFO. <BR>
